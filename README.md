@@ -1,1 +1,1 @@
-# debugp7-streamlit
+# p7-dashboard_streamlit
