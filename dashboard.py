@@ -219,7 +219,7 @@ def chart_bar(title, row, df, col, client):
 			st.pyplot(fig)
 
 
-def score_viz(df_test_sample,client,exp_value,shap_values):
+def score_viz(df_test,client,exp_value,shap_values):
 	"""Fonction principale de l'onglet 'Score visualisation' """
 
 	score,result=prediction(client)
