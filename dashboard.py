@@ -302,8 +302,8 @@ def main():
 	if selection=="Visualisation score":
 		st.markdown(f'<p style="background-color:#0066cc;color:#33ff33;font-size:24px;border-radius:2%;">{"Visualisation score"}</p>',unsafe_allow_html=True)
 		st.markdown('Veuillez sélectionner un numéro de demande de prêt')
-		#client,idx_client=get_client(db_test)
-		#infos_client(db_test,client,idx_client)
+		client,idx_client=get_client(db_test)
+		infos_client(db_test,client,idx_client)
 		score_viz(df_test,idx_client,exp_value,shap_values)
 
 
