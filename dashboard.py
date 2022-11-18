@@ -36,7 +36,7 @@ def load_data():
 	db_test=pd.read_csv('./Data/df_app.csv')
 	db_test['YEARS_BIRTH']=(db_test['DAYS_BIRTH']/-365).apply(lambda x: int(x))
 	db_test=db_test.reset_index(drop=True)
-	df_test=pd.read_csv('./Data/df_test.csv')
+	df_test=pd.read_csv('./Data/df_test3.csv')
 	df_test_sample = pd.read_csv('./Data/test_sample.csv', sep=';')
 	logo=imread("./Data/logo.png")
 
