@@ -36,13 +36,12 @@ def load_data():
 	db_test=pd.read_csv('./Data/df_app.csv')
 	db_test['YEARS_BIRTH']=(db_test['DAYS_BIRTH']/-365).apply(lambda x: int(x))
 	db_test=db_test.reset_index(drop=True)
-	df_test=pd.read_csv('./Data/df_test3.csv')
-	df_test_sample = pd.read_csv('./Data/test_sample.csv', sep=';')
+	df_test=pd.read_csv('./Data/df_api.csv')
 	logo=imread("./Data/logo.png")
 
 
 	# Chargement du modèle pré-entrainé
-	pickle_in = dvc.api.read('Data/lgbm_model2.pkl', mode='rb')
+	pickle_in = dvc.api.read('Data/model_lgbm_api.pkl', mode='rb')
 	lgbm=pickle.loads(pickle_in)
 
 	#Calcul des SHAP value
