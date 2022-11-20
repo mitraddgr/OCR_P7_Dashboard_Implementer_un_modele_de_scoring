@@ -304,7 +304,7 @@ def main():
 		st.markdown('Veuillez sélectionner un numéro de demande de prêt')
 		client,idx_client=get_client(db_test)
 		infos_client(db_test,client,idx_client)
-		score_viz(df_test_api,idx_client,exp_value,shap_values)
+		#score_viz(df_test_api,idx_client,exp_value,shap_values)
 
 
 if __name__ == '__main__':
