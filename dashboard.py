@@ -41,7 +41,7 @@ def load_data():
 
 
 	# Chargement du modèle pré-entrainé
-	pickle_in = dvc.api.read('Data/lgbm_model2.pkl', mode='rb')
+	pickle_in = dvc.api.read('Data/model_lgbm_api.pkl', mode='rb')
 	lgbm=pickle.loads(pickle_in)
 
 	#Calcul des SHAP value
@@ -268,7 +268,6 @@ def st_shap(plot, height=None):
 
 def get_proba_for_client(client_id:str):
     url = f'https://debugapi-p7.herokuapp.com/predict?id_client={client_id}'
-    #url = f'https://debugapi-p7.herokuapp.com/predict?id_client=100001'
     x = requests.post(url)
     return x.json()['probability']
 
