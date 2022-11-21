@@ -267,7 +267,8 @@ def st_shap(plot, height=None):
 
 
 def get_proba_for_client(client_id:str):
-    url = f'https://debugapi-p7.herokuapp.com/predict?id_client={client_id}'
+    #url = f'https://debugapi-p7.herokuapp.com/predict?id_client={client_id}'
+    url = f'https://debugapi-p7.herokuapp.com/predict?id_client={308653}'
     x = requests.post(url)
     return x.json()['probability']
 
