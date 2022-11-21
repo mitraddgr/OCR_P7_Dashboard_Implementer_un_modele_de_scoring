@@ -275,7 +275,7 @@ def get_proba_for_client(client_id:str):
 def main():
 	"""Fonction principale permettant l'affichage de la fenêtre latérale avec les 3 onglets.
 	"""
-	db_test,df_test,df_test_sample,shap_values,lgbm,exp_value,logo=load_data()
+	db_test,df_test,shap_values,lgbm,exp_value,logo=load_data()
 	st.sidebar.image(logo)
 	PAGES = [
 	    "Tableau clientèle",
