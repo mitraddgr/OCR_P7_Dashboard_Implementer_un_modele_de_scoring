@@ -41,7 +41,7 @@ def load_data():
 
 
 	# Chargement du modèle pré-entrainé
-	pickle_in = dvc.api.read('Data/model_lgbm_api.pkl', mode='rb')
+	pickle_in = dvc.api.read('Data/lgbm_model.pkl', mode='rb')
 	lgbm=pickle.loads(pickle_in)
 
 	#Calcul des SHAP value
