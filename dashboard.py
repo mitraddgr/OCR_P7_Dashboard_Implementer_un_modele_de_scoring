@@ -267,11 +267,10 @@ def st_shap(plot, height=None):
 
 
 def get_proba_for_client(client_id:str):
-    url = f'https://ocr-p7-api.herokuapp.com//predict?id_client={client_id}'
+    #url = f'https://ocr-p7-api.herokuapp.com//predict?id_client={client_id}'
+    url = f'https://ocr-p7-api.herokuapp.com/predict?id_client=322225'
     x = requests.post(url)
-    resultsList = x.json()
-    probability = resultsList['probability']
-    return probability
+    return x.json()['probability']
 
 def main():
 	"""Fonction principale permettant l'affichage de la fenêtre latérale avec les 3 onglets.
