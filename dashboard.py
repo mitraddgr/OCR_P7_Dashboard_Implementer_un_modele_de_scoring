@@ -48,7 +48,7 @@ def load_data():
 	explainer = shap.TreeExplainer(lgbm)
 	shap_values = explainer.shap_values(df_test)[1]
 	exp_value=explainer.expected_value[1]
-	return db_test,df_test,df_test_sample,shap_values,lgbm,exp_value,logo
+	return db_test,df_test,shap_values,lgbm,exp_value,logo
 
 
 def tab_client(db_test):
