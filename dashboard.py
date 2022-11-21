@@ -37,12 +37,11 @@ def load_data():
 	db_test['YEARS_BIRTH']=(db_test['DAYS_BIRTH']/-365).apply(lambda x: int(x))
 	db_test=db_test.reset_index(drop=True)
 	df_test=pd.read_csv('./Data/df_test.csv')
-	df_test_api=pd.read_csv('./Data/df_api.csv')
 	logo=imread("./Data/logo.png")
 
 
 	# Chargement du modèle pré-entrainé
-	pickle_in = dvc.api.read('Data/model_lgbm_api.pkl', mode='rb')
+	pickle_in = dvc.api.read('Data/lgbm_model2.pkl', mode='rb')
 	lgbm=pickle.loads(pickle_in)
 
 	#Calcul des SHAP value
@@ -219,7 +218,7 @@ def chart_bar(title, row, df, col, client):
 			st.pyplot(fig)
 
 
-def score_viz(df_test_api,client,exp_value,shap_values):
+def score_viz(df_test,client,exp_value,shap_values):
 	"""Fonction principale de l'onglet 'Score visualisation' """
 
 	score,result=prediction(client)
@@ -268,8 +267,8 @@ def st_shap(plot, height=None):
 
 
 def get_proba_for_client(client_id:str):
-    url = f'https://ocr-p7-api.herokuapp.com/predict?id_client={client_id}'
-    #url = f'https://ocr-p7-api.herokuapp.com/predict?id_client=322225'
+     url = f'https://debugapi-p7.herokuapp.com/predict?id_client={client_id}'
+    #url = f'https://debugapi-p7.herokuapp.com/predict?id_client=100001'
     x = requests.post(url)
     return x.json()['probability']
 
@@ -304,7 +303,7 @@ def main():
 		st.markdown('Veuillez sélectionner un numéro de demande de prêt')
 		client,idx_client=get_client(db_test)
 		infos_client(db_test,client,idx_client)
-		#score_viz(df_test_api,idx_client,exp_value,shap_values)
+		score_viz(df_test,idx_client,exp_value,shap_values)
 
 
 if __name__ == '__main__':
