@@ -249,7 +249,7 @@ def score_viz(df_test,client,exp_value,shap_values):
 
 def prediction(id):
 	y_pred=get_proba_for_client(id)
-	decision=np.where(y_pred[0]>0.48,"Rejected","Approved")
+	decision=np.where(y_pred>0.48,"Rejected","Approved")
 	return y_pred,decision
 
 def color(pred):
@@ -268,9 +268,9 @@ def st_shap(plot, height=None):
 
 def get_proba_for_client(client_id:int):
     url = f'https://ocr-p7-api.herokuapp.com//predict?id_client=client_id'
-    #url = f'https://ocr-p7-api.herokuapp.com/predict?id_client=322225'447645
+    #url = f'https://ocr-p7-api.herokuapp.com/predict?id_client=322225'447645['probability']
     x = requests.post(url)
-    return x.json()['probability']
+    return x.json()
 
 def main():
 	"""Fonction principale permettant l'affichage de la fenêtre latérale avec les 3 onglets.
