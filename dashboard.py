@@ -250,9 +250,9 @@ def score_viz(df_test,client,exp_value,shap_values):
 def prediction(id):
 	y_pred=get_proba_for_client(id)
 	seuil = 0.48
-	decision=np.where(float(y_pred)>float(seuil),"Rejected","Approved")
+	decision=np.where(y_pred>float(seuil),"Rejected","Approved")
 	return y_pred,decision
-	return y_pred
+	
 
 def color(pred):
 	'''Définition de la couleur selon la prédiction'''
@@ -269,10 +269,10 @@ def st_shap(plot, height=None):
 
 
 def get_proba_for_client(client_id:int):
-    url = f'https://ocr-p7-api.herokuapp.com//predict?id_client=client_id'
-    #url = f'https://ocr-p7-api.herokuapp.com/predict?id_client=322225'447645['probability']
+    #url = f'https://ocr-p7-api.herokuapp.com//predict?id_client=client_id'447645['probability']
+    url = f'https://ocr-p7-api.herokuapp.com/predict?id_client=322225'
     x = requests.post(url)
-    return x.json()[0]
+    return x.json()
     
 
 def main():
