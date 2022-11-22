@@ -271,8 +271,8 @@ def get_proba_for_client(client_id:int):
     #url = f'https://ocr-p7-api.herokuapp.com/predict?id_client=322225'447645['probability']
     x = requests.post(url)
     return x.json()
-print(x)
-print(x.json())
+    print(x)
+    print(x.json())
 
 def main():
 	"""Fonction principale permettant l'affichage de la fenêtre latérale avec les 3 onglets.
