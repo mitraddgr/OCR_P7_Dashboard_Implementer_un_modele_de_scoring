@@ -250,29 +250,29 @@ def score_viz(df_test,client,exp_value,shap_values):
 def prediction(id):
 	y_pred=get_proba_for_client(id)
 	seuil = 0.48
-	#decision=np.where(float(y_pred)>float(seuil),"Rejected","Approved")
-	#return y_pred,decision
+	decision=np.where(float(y_pred)>float(seuil),"Rejected","Approved")
+	return y_pred,decision
 	return y_pred
 
-#def color(pred):
-#	'''Définition de la couleur selon la prédiction'''
-#	if pred=='Approved':
-#		col='#fcba03'
-#	else :
-#		col='#3145c4'
-#	return col
+def color(pred):
+	'''Définition de la couleur selon la prédiction'''
+	if pred=='Approved':
+		col='#fcba03'
+	else :
+		col='#3145c4'
+	return col
 
-#def st_shap(plot, height=None):
-#	"""Fonction permettant l'affichage de graphique shap values"""
-#	shap_html = f"<head>{shap.getjs()}</head><body>{plot.html()}</body>"
-#	components.html(shap_html, height=height)
+def st_shap(plot, height=None):
+	"""Fonction permettant l'affichage de graphique shap values"""
+	shap_html = f"<head>{shap.getjs()}</head><body>{plot.html()}</body>"
+	components.html(shap_html, height=height)
 
 
 def get_proba_for_client(client_id:int):
     url = f'https://ocr-p7-api.herokuapp.com//predict?id_client=client_id'
     #url = f'https://ocr-p7-api.herokuapp.com/predict?id_client=322225'447645['probability']
     x = requests.post(url)
-    return x.json()
+    return x.json()[0]
     
 
 def main():
