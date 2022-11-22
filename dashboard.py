@@ -249,7 +249,7 @@ def score_viz(df_test,client,exp_value,shap_values):
 
 def prediction(id):
 	y_pred=get_proba_for_client(id)
-	decision=np.where(y_pred[0]>0.48,"Rejected","Approved")
+	decision=np.where(y_pred>0.48,"Rejected","Approved")
 	return y_pred,decision
 
 def color(pred):
