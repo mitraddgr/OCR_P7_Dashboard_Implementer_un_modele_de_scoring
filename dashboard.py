@@ -250,7 +250,7 @@ def score_viz(df_test,client,exp_value,shap_values):
 def prediction(id):
 	y_pred=get_proba_for_client(id)
 	seuil = 0.48
-	decision=np.where(y_pred>float(seuil),"Rejected","Approved")
+	decision=np.where(float(y_pred)>float(seuil),"Rejected","Approved")
 	return y_pred,decision
 
 def color(pred):
