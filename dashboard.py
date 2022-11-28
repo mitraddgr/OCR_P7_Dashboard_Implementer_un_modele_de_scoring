@@ -14,8 +14,7 @@ from matplotlib.image import imread
 from sklearn.neighbors import NearestNeighbors
 
 #Titre de la page
-st.set_page_config(page_title="Projet 7-Dashboard Pret à dépenser",
-				   page_icon = "icon_pret_a_depenser.png",layout="wide")
+st.set_page_config(page_title="Projet 7-Dashboard Pret à dépenser", page_icon = "icon_pret_a_depenser.png",layout="wide")
 
 
 components.html("""<body style="margin: 0">
@@ -103,7 +102,7 @@ def get_client(db_test):
 	"""Sélection d'un client via une selectbox"""
 	client=st.selectbox('Client',db_test['SK_ID_CURR'])
 	idx_client=db_test.index[db_test['SK_ID_CURR']==client][0]
-	return client,idx_client
+	return client, idx_client
 
 
 def infos_client(db_test,client,idx_client):
@@ -218,10 +217,10 @@ def chart_bar(title, row, df, col, client):
 			st.pyplot(fig)
 
 
-def score_viz(df_test,client,exp_value,shap_values):
+def score_viz(df_test,client, client_id, exp_value,shap_values):
 	"""Fonction principale de l'onglet 'Score visualisation' """
 
-	score,result=prediction(client)
+	score,result=prediction(client_id)
 
 
 	fig = go.Figure(go.Indicator(
@@ -247,11 +246,6 @@ def score_viz(df_test,client,exp_value,shap_values):
 
 	st_shap(shap.force_plot(exp_value, shap_values[client], features = df_test.iloc[client], feature_names=df_test.columns, figsize=(12,5)))
 
-#def prediction(id):
-#	y_pred=get_proba_for_client(id)
-#	seuil = 0.48
-#	decision=np.where(y_pred>float(seuil),"Rejected","Approved")
-#	return y_pred,decision
 
 def prediction(id):
     y_pred=get_proba_for_client(id)
@@ -282,7 +276,7 @@ def get_proba_for_client(client_id:int):
 #    url = f'https://ocr-p7-api.herokuapp.com/predict?id_client=322225'
 #    x = requests.post(url)
 #    return x.json()
-    
+
 
 def main():
 	"""Fonction principale permettant l'affichage de la fenêtre latérale avec les 3 onglets.
@@ -315,11 +309,12 @@ def main():
 		st.markdown('Veuillez sélectionner un numéro de demande de prêt')
 		client,idx_client=get_client(db_test)
 		infos_client(db_test,client,idx_client)
-		score_viz(df_test,idx_client,exp_value,shap_values)
+		score_viz(df_test,idx_client, client, exp_value,shap_values)
 
 
 if __name__ == '__main__':
 	main()
+
 
 
 
