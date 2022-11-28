@@ -273,7 +273,7 @@ def st_shap(plot, height=None):
 	components.html(shap_html, height=height)
 
 def get_proba_for_client(client_id:str):
-    url = f'https://ocr-p7-api.herokuapp.com//predict?id_client={client_id}'
+    url = f'https://ocr-p7-api.herokuapp.com/predict?id_client={client_id}'
     x = requests.post(url)
     return x.json()['probability']
 
